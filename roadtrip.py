@@ -2,7 +2,7 @@
 
 from random import randint
 
-optimalDistance = 270
+maxDistance = 270
 
 # Optimal Gas Stoppages
 def minimizeStoppingTime(gasStations):
@@ -40,17 +40,17 @@ def minimizeStoppingTime(gasStations):
 
 # Penalization Function
 def penaltyFunction(sourceStation, destinationStation):
-    pen = sourceStation - destinationStation + optimalDistance
+    pen = sourceStation - destinationStation + maxDistance
     return pen * pen * pen
 
 
 # Generates Gas Stations at Random Mile Markers
 def generateGasStations(startLoc, endLoc):
     gasStations = [0, endLoc]
-    for i in range(startLoc, endLoc, optimalDistance):
+    for i in range(startLoc, endLoc, maxDistance):
         divisor = randint(2, 50)
-        for j in range(i, i + optimalDistance, optimalDistance / divisor):
-            gasStations.append(randint(i + j, i + j + optimalDistance) % 2907)
+        for j in range(i, i + maxDistance, maxDistance / divisor):
+            gasStations.append(randint(i + j, i + j + maxDistance) % 2907)
     return sorted(gasStations)
 
 

@@ -1,15 +1,17 @@
-# Written by Austin Walters for vacation roadtrip algorithm
-
 from random import randint
+
 
 optimalDistance = 270
 
 # Optimal Gas Stoppages
 def minimizeStoppingTime(gasStations):
     
-    # Base Case
-    optimalPathCost = [0]
-    previousStation = [0]
+    optimalPathCost = []
+    previousStation = []
+
+    # Base case
+    optimalPathCost.append(0)
+    previousStation.append(0)
 
     for i in range(1, len(gasStations)):
    
@@ -46,16 +48,20 @@ def penaltyFunction(sourceStation, destinationStation):
 
 # Generates Gas Stations at Random Mile Markers
 def generateGasStations(startLoc, endLoc):
+
     gasStations = [0, endLoc]
+
     for i in range(startLoc, endLoc, optimalDistance):
         divisor = randint(2, 50)
         for j in range(i, i + optimalDistance, optimalDistance / divisor):
             gasStations.append(randint(i + j, i + j + optimalDistance) % 2907)
+
     return sorted(gasStations)
 
 
 # Distance from New York to San Francisco, just for kicks                                         
 gasStationMileMarker = generateGasStations(0, 2908)
+
 optimizedPath =  minimizeStoppingTime(gasStationMileMarker)
 stop = 0
 

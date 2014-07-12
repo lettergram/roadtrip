@@ -27,6 +27,7 @@ def minimizeStoppingTime(gasStations):
                 optimalPathCost[i] = penalty
                 previousStation[i] = j
 
+
     # This part just traces the least penalizing path 
     # Starting from the finish to the start
     station = len(previousStation) - 1
@@ -40,9 +41,7 @@ def minimizeStoppingTime(gasStations):
 
 # Penalization Function
 def penaltyFunction(sourceStation, destinationStation):
-    pen = sourceStation - destinationStation + maxDistance
-    return pen * pen * pen
-
+    return sourceStation - destinationStation + maxDistance
 
 # Generates Gas Stations at Random Mile Markers
 def generateGasStations(startLoc, endLoc):
@@ -53,8 +52,7 @@ def generateGasStations(startLoc, endLoc):
             gasStations.append(randint(i + j, i + j + maxDistance) % 2907)
     return sorted(gasStations)
 
-
-# Distance from New York to San Francisco, just for kicks                                         
+# Distance from New York to San Francisco, just for kicks                                    
 gasStationMileMarker = generateGasStations(0, 2908)
 optimizedPath =  minimizeStoppingTime(gasStationMileMarker)
 stop = 0
